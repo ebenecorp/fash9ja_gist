@@ -40,8 +40,10 @@ class CategoryController extends Controller
         $this->validate($request, ['name'=>'required||min:6']);
 
         Category::create($request->all());
+        
+        session()->flash('message', 'Category was successfully created');
 
-         return redirect('/dashboard');
+         return redirect( route('category.index'));
         //
     }
 
@@ -87,6 +89,8 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->update();
 
+        session()->flash('message', 'Category was successfully Updated');
+
         return redirect(route('category.index'));
 
 
@@ -102,6 +106,8 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
+
+        session()->flash('message', 'Category was successfully deleted');
          return redirect(route('category.index'));
         //
     }
