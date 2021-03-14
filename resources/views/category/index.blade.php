@@ -6,27 +6,44 @@
 @section('content')
    
     <div class="container">
-        <div class="row justify text-center">
+        <div class="row justify-text-center">
             <div class="col-md-8">
             
                 <div class="card card-default">
                     <div class="card-header">
                             Categories
                     </div>
-                    <ul class="list-group list-group-flush">
-
-                        @foreach ($categories as $category)
-                            <li class="list-group-item">
-                                {{$category->name}}
-                                {{-- {{$category->id}} --}}
-
-                                <a href="/categories/{{ $category->id }}/edit" class="btn btn-info btn-sm float-right">Edit</a>
-                                <a  class="btn btn-danger btn-sm float-right" onclick="handleDelete({{$category->id}})">Delete</a>
-                            </li>
-                            @endforeach
+                    <div class="card-body">
+                        @if ($categories->count() > 0)
                             
-                    
-                    </ul>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">Category</th>
+                                <th scope="col">Post Count</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($categories as $category)
+                                    <tr>
+                                    <th scope="row">{{$category->name}}</th>
+                                    <td>{{$category->posts->count()}}</td>
+                                    <td> 
+                                        <a href="/categories/{{ $category->id }}/edit" class="btn btn-info btn-sm float-right">Edit</a>
+                                    </td>
+                                    <td>
+                                        <a  class="btn btn-danger btn-sm float-right" onclick="handleDelete({{$category->id}})">Delete</a>
+                                    </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        @else
+                            No Category yet
+                        @endif
+                    </div>
                 </div>
             </div>
 

@@ -6,29 +6,66 @@
 @section('content')
    
     <div class="container">
-        <div class="row justify text-center">
+        <div class="row justify">
             <div class="col-md-8">
             
                 <div class="card card-default">
                     <div class="card-header">
                          Posts
                     </div>
-                    <ul class="list-group list-group-flush">
-
-                        @foreach ($posts as $post)
-                            <li class="list-group-item">
-                                {{$post->title}}
-                                {{-- {{$post->id}} --}}
-                                @if (!$post->trashed())
-                                    
-                                <a href="/categories/{{ $post->id }}/edit" class="btn btn-info btn-sm float-right">Edit</a>
-                                @endif
-                                <a  class="btn btn-danger btn-sm float-right" onclick="handleDelete({{$post->id}})"> {{$post->trashed()? 'Delete' : 'Trash'}}</a>
-                            </li>
-                            @endforeach
-                            
+                    <div class="card-body">
+                         
                     
-                    </ul>
+                        @if ($posts->count() > 0 )
+                            
+                            <table class="table">
+                                    <thead>
+                                        <tr>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Category</th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($posts as $post)
+
+                                        <tr>
+                                            <td>{{$post->title}}</td>
+                                            <td>
+                                                 <a href="{{route('category.edit', $post->category->id)}}" >{{$post->category->name}}</a>                                               
+                                            </td>
+                                            <td>
+                                                @if ($post->trashed())
+
+                                                    <form action="{{route('posts.restore', $post->id)}}" method="POST">
+                                                            @csrf
+                                                            @method('PUT')
+                                                        <button type="submit" class="btn btn-info btn-sm ">Restore</button>
+                                                    </form>
+                                                
+                                                    @else
+                                                
+                                                    <a href="{{route('posts.edit', $post->id)}}" class="btn btn-info btn-sm float-right">Edit</a>
+                                                @endif
+                                            </td>
+                                        
+                                            <td>
+                                                <a  class="btn btn-danger btn-sm float-right" onclick="handleDelete({{$post->id}})"> {{$post->trashed()? 'Delete' : 'Trash'}}</a>
+
+                                            </td>
+                                        </tr>
+                                        @endforeach
+
+                                    </tbody>
+                                </table>
+                            @else
+                                <h3 class="text-center">
+                                    No Posts yet
+                                </h3>
+                            @endif
+
+                    
                 </div>
             </div>
 

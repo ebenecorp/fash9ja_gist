@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
     
     Route::resource('posts', PostController::class);
     Route::get('posts-trashed', [PostController::class, 'showTrashed'])->name('posts.trashed');
+    Route::put('posts-restore/{post}', [PostController::class, 'restore'])->name('posts.restore');
 
 });
 
