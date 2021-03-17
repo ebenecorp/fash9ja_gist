@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
-                    <x-dropdown align="left" width="60">
+                    <x-dropdown align="left" width="48">
                         <x-slot name="trigger">
                             <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                                 <div>Categories</div>
@@ -30,24 +30,53 @@
                                 </div>
                             </button>
                         </x-slot>
-
                         <x-slot name="content">
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <x-dropdown-link :href="route('category.index')" :active="request()->routeIs('category.index')">
-                                    {{ __('List Categories') }}
-                                </x-dropdown-link>
-                                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                    <x-nav-link :href="route('category.create')" :active="request()->routeIs('category.create')">
-                                        {{ __('Add Category') }}
-                                    </x-nav-link>
-                                </div>
-                            </div>
-                        </x-slot>
-                        
+                                <ul>
+                                  <li> 
+                                    <x-dropdown-link :href="route('category.index')" :active="request()->routeIs('category.index')">
+                                        {{ __('List Categories') }}
+                                    </x-dropdown-link>
+                                    </li> 
+                                    <li>
+                                    <x-dropdown-link :href="route('category.create')" :active="request()->routeIs('category.create')">
+                                        {{ __('Add Categories') }}
+                                    </x-dropdown-link>
+                                    </li>                                
+                                </ul>                            
+                        </x-slot>                                                
                     </x-dropdown>
                 </div>
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
-                    <x-dropdown align="left" width="60">
+                    <x-dropdown align="left" width="48">
+                        <x-slot name="trigger">
+                            <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                                <div>Tags</div>
+
+                                <div class="ml-1">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </button>
+                        </x-slot>
+                        <x-slot name="content">
+                                <ul>
+                                  <li> 
+                                    <x-dropdown-link :href="route('tags.index')" :active="request()->routeIs('tags.index')">
+                                        {{ __('List Tag') }}
+                                    </x-dropdown-link>
+                                    </li> 
+                                    <li>
+                                    <x-dropdown-link :href="route('tags.create')" :active="request()->routeIs('tags.create')">
+                                        {{ __('Add Tag') }}
+                                    </x-dropdown-link>
+                                    </li>                                
+                                </ul>                            
+                        </x-slot>      
+                    </x-dropdown>
+                </div>
+                <div class="hidden sm:flex sm:items-center sm:ml-6">
+                    <x-dropdown align="left" width="48">
                         <x-slot name="trigger">
                             <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                                 <div>Posts</div>
@@ -61,16 +90,18 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <x-dropdown-link :href="route('posts.index')" :active="request()->routeIs('category.index')">
-                                    {{ __('List Posts') }}
-                                </x-dropdown-link>
-                                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                    <x-nav-link :href="route('posts.create')" :active="request()->routeIs('category.create')">
-                                        {{ __('Add Post') }}
-                                    </x-nav-link>
-                                </div>
-                            </div>
+                                <ul>
+                                  <li> 
+                                    <x-dropdown-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
+                                        {{ __('List Posts') }}
+                                    </x-dropdown-link>
+                                    </li> 
+                                    <li>
+                                    <x-dropdown-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
+                                        {{ __('Add Posts') }}
+                                    </x-dropdown-link>
+                                    </li>                                
+                                </ul>                            
                         </x-slot>
                         
                     </x-dropdown>
@@ -95,7 +126,22 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        <ul>
+
+                        
                         <!-- Authentication -->
+                        <li>
+                            <x-dropdown-link :href="route('user.edit-profile')">
+                      
+                                {{-- <a class="nav-link " href="{{route('user.edit-profile')}}" id="navbar" role="button" aria-expanded="false"> --}}
+                                    Edit Profile
+                                {{-- </a> --}}
+                            </x-dropdown-link>    
+                        </li>
+                    {{-- </x-slot> --}}
+                    {{-- <x-slot name="content"> --}}
+                        <!-- Authentication -->
+                        <li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
@@ -105,6 +151,8 @@
                                 {{ __('Log out') }}
                             </x-dropdown-link>
                         </form>
+                        </li>
+                    </ul>
                     </x-slot>
                 </x-dropdown>
             </div>

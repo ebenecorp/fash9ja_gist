@@ -14,15 +14,7 @@
                 </div>
                 <div class="card-body">
                     
-                    <div class="alert-danger">
-                        @foreach ($errors->all() as $error)
-                        <ul>
-                            <li>
-                                {{$error}}
-                            </li>
-                        </ul>
-                        @endforeach
-                    </div>
+                   @include('partials.flash')
                     <form  class="form-group" action="{{isset($post)? route('posts.update', $post->id): route('posts.store')}}" method="POST" enctype="multipart/form-data" >
                         @csrf
                         @if (isset($post))
@@ -71,6 +63,27 @@
                                 @endforeach
                             </select>
                         </div>
+
+                        @if ($tags->count() > 0)
+                            <div class="mb-3">
+                                <label for="" class="form-label">Tags</label>
+                                <select name="tags[]" id="tags" class="form-control tag-selector" multiple="multiple">                                
+                                   
+                                    @foreach ($tags as $tag)
+                                        <option value="{{$tag->id}}"
+                                          @if (isset($post)) 
+                                            @if ($post->hasTags($tag->id))
+                                              selected  
+                                            @endif
+                                          @endif   
+                                        >
+                                            {{$tag->name}}
+                                        </option>
+                                    @endforeach
+                                </select>                                
+                            </div>
+                        @endif
+
                         {{-- <div class="form-control"> --}}
                             <button type="submit" class="btn btn-success btn-sm">{{isset($post)? 'Update Post' : 'Create Post'}}</button>
                        {{-- </div> --}}
@@ -93,17 +106,25 @@
 @section('css')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.css"  crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 
 @endsection
 
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix-core.min.js" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <script>
         flatpickr("#published_at", {
             enableTime: true,
+        });
+
+        $(".tag-selector").select2({
+        tags: true
         });
     </script>
 

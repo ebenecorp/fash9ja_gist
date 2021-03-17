@@ -7,10 +7,16 @@ use App\Http\Requests\Posts\CreatePostRequest;
 use App\Http\Requests\Posts\UpdatePostRequest;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Tag;
 
 class PostController extends Controller
 {
     // use SoftDeletes;
+
+    public function __construct()
+    {
+        $this->middleware('verifyCategory')->only(['create', 'store']);
+    }
 
     /**
      * Display a listing of the resource.
@@ -30,7 +36,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create')->withCategories(Category::all());
+        return view('posts.create')->withCategories(Category::all())->withTags(Tag::all());
         //
     }
 
@@ -44,7 +50,7 @@ class PostController extends Controller
     {
         // dd($request->image->store('posts'));
         $image = $request->image->store('posts');
-        Post::create([
+       $post = Post::create([
             'title'=>$request->title,
             'content'=>$request->content,
             'description'=>$request->description,
@@ -52,6 +58,11 @@ class PostController extends Controller
             'published_at'=>$request->published_at,
             'category_id'=>$request->category
         ]);
+
+        if($request->tags){
+            $post->tags()->attach($request->tags);
+
+        }
 
         session()->flash('message', 'Post was successfully created');
 
@@ -80,7 +91,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.create')->withPost($post)->withCategories(Category::all());
+        return view('posts.create')->withPost($post)->withCategories(Category::all())->withTags(Tag::all());
         
         //
     }
@@ -105,6 +116,11 @@ class PostController extends Controller
         $data['category_id'] = $request->category;
 
         $post->update($data);
+
+         if($request->tags){
+            $post->tags()->sync($request->tags);
+
+        }
 
         session()->flash('message', 'Post was successfully updated');
 

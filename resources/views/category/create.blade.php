@@ -14,13 +14,8 @@
                 </div>
                 <div class="card-body">
                     <div class="alert-danger">
-                        @foreach ($errors->all() as $error)
-                        <ul>
-                            <li>
-                                {{$error}}
-                            </li>
-                        </ul>
-                        @endforeach
+                     @include('partials.flash')
+
                     </div>
                     <form action="/categories/create" method="POST">
                         @csrf

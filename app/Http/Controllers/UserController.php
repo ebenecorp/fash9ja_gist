@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Category;
+use App\Http\Requests\User\UpdateUserRequest;
+use App\Models\User;
 
-class CategoryController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +16,28 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        return view('category.index')->with('categories', Category::all());
+        return view('users.index')->withUsers(User::all());
     }
 
+    /**
+     * Change the role of a user.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function makeAdmin(User $user)
+    {
+        if($user->role === 'admin'){
+            $user->role = 'writer';
+        }else{
+            $user->role = 'admin';
+        }
+        $user->save();
+
+        session()->flash('message', 'Role of user has been successfully changed');
+
+        return redirect(route('users.index'));
+        //
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -25,7 +45,6 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('category.create');
         //
     }
 
@@ -37,13 +56,6 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['name'=>'required||min:6']);
-
-        Category::create($request->all());
-        
-        session()->flash('message', 'Category was successfully created');
-
-         return redirect( route('category.index'));
         //
     }
 
@@ -64,10 +76,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        // dd($id);
-        return view('category.edit')->with('category', Category::find($id));
+        return view('users.edit')->withUser(auth()->user());
         //
     }
 
@@ -78,22 +89,18 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request)
     {
-        $this->validate($request, [
-            'name'=>'required'
+        $user = auth()->user();
+
+        $user->update([
+            'name' => $request->name,
+            'about' => $request->about
         ]);
 
-        $category = Category::find($id);
+        session()->flash('message', 'User Profile has been successfully Updated');
 
-        $category->name = $request->name;
-        $category->update();
-
-        session()->flash('message', 'Category was successfully Updated');
-
-        return redirect(route('category.index'));
-
-
+        return redirect()->back();
         //
     }
 
@@ -103,16 +110,8 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        if( $category->posts->count() > 0 ){
-             session()->flash('message', 'Category cannot be deleted because it has associated posts');
-            return redirect()->back();
-        }
-        $category->delete();
-
-        session()->flash('message', 'Category was successfully deleted');
-         return redirect(route('category.index'));
         //
     }
 }
