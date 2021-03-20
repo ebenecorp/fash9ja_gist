@@ -41,16 +41,19 @@ Route::middleware('auth')->group(function () {
     });
 
     
-    Route::resource('posts', PostController::class);
-    Route::resource('tags', TagController::class);
-    Route::get('posts-trashed', [PostController::class, 'showTrashed'])->name('posts.trashed');
-    Route::put('posts-restore/{post}', [PostController::class, 'restore'])->name('posts.restore');
+        Route::resource('posts', PostController::class);
+        Route::resource('tags', TagController::class);
+        Route::get('posts-trashed', [PostController::class, 'showTrashed'])->name('posts.trashed');
+        Route::put('posts-restore/{post}', [PostController::class, 'restore'])->name('posts.restore');
 
     Route::middleware(['admin'])->group(function () {
         Route::get('users', [UserController::class, 'index'])->name('user.index');
         Route::post('users/{user}/make-admin', [UserController::class, 'makeAdmin'])->name('user.make-admin');
         Route::get('users/edit', [UserController::class, 'edit'])->name('user.edit-profile');
         Route::put('users/update', [UserController::class, 'update'])->name('user.update-profile');
+        Route::get('company/edit', [ CompanyController::class, 'edit'])->name('edit-company');
+        Route::put('company/update', [ CompanyController::class, 'update'])->name('update-company');
+
 
     });
 

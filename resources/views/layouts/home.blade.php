@@ -77,12 +77,21 @@
                 </a>
                 
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li>
+                  <li>
                     
                     <a class="dropdown-item" href="{{route('user.edit-profile')}}" >
                       Edit Profile
                     </a>
                   </li>
+                  @if (auth()->user()->isAdmin())
+                    <li>
+                      
+                      <a class="dropdown-item" href="{{route('edit-company')}}" >
+                        Edit Company Details
+                      </a>
+                    </li>
+                      
+                  @endif
                                               
 
                   <li>

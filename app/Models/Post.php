@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Tag;
+use App\Models\Category;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -16,7 +18,7 @@ class Post extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'title', 'content', 'description', 'published_at', 'image', 'category_id'
+        'title', 'content', 'description', 'published_at', 'image', 'category_id', 'user_id'
     ];
 
     public function deleteImage(){
@@ -57,4 +59,7 @@ class Post extends Model
        return in_array($tagId, $this->tags->pluck('id')->toArray()) ;
     }
 
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

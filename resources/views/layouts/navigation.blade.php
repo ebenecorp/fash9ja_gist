@@ -133,14 +133,19 @@
                         <li>
                             <x-dropdown-link :href="route('user.edit-profile')">
                       
-                                {{-- <a class="nav-link " href="{{route('user.edit-profile')}}" id="navbar" role="button" aria-expanded="false"> --}}
                                     Edit Profile
-                                {{-- </a> --}}
+                            
                             </x-dropdown-link>    
                         </li>
-                    {{-- </x-slot> --}}
-                    {{-- <x-slot name="content"> --}}
-                        <!-- Authentication -->
+                        @if(auth()->user()->isAdmin())
+                        <li>
+                            <x-dropdown-link :href="route('edit-company')">
+                      
+                                    Edit Company Details
+                            
+                            </x-dropdown-link>    
+                        </li>
+                        @endif
                         <li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
