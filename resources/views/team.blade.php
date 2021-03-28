@@ -22,15 +22,18 @@ Fash9ja: Our Team
         <section class="popular-places" id="popular">
             <div class="container">
                 <div class="row">
+                    @foreach ($users as $user)
+                        
+                
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="item popular-item">
                             <div class="thumb">
                                 <div class="thumb-img">
-                                    <img src="img/team-image-1-646x680.jpg" alt="">
+                                    <img src="{{Gravatar::src($user->email)}}" alt="">
                                 </div>
                                 <div class="text-content">
-                                    <h4>John Doe</h4>
-                                    <span>CEO</span>
+                                    <h4>{{$user->name}}</h4>
+                                    <span>{{$user->role}}</span>
                                 </div>
                                 <div class="plus-button">
                                     <a href="#"><i class="fa fa-facebook"></i></a>
@@ -42,65 +45,7 @@ Fash9ja: Our Team
                         </div>
                     </div>
 
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="item popular-item">
-                            <div class="thumb">
-                                <div class="thumb-img">
-                                    <img src="img/team-image-2-646x680.jpg" alt="">
-                                </div>
-                                <div class="text-content">
-                                    <h4>Jane Doe</h4>
-                                    <span>Marketing Manager</span>
-                                </div>
-                                <div class="plus-button">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-linkedin"></i></a>
-                                    <a href="#"><i class="fa fa-behance"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="item popular-item">
-                            <div class="thumb">
-                                <div class="thumb-img">
-                                    <img src="img/team-image-3-646x680.jpg" alt="">
-                                </div>
-                                <div class="text-content">
-                                    <h4>Paula Jeorge</h4>
-                                    <span>Customer Service</span>
-                                </div>
-                                <div class="plus-button">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-linkedin"></i></a>
-                                    <a href="#"><i class="fa fa-behance"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="item popular-item">
-                            <div class="thumb">
-                                <div class="thumb-img">
-                                    <img src="img/team-image-4-646x680.jpg" alt="">
-                                </div>
-                                <div class="text-content">
-                                    <h4>Dan Blatan</h4>
-                                    <span>Customer Service</span>
-                                </div>
-                                <div class="plus-button">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-linkedin"></i></a>
-                                    <a href="#"><i class="fa fa-behance"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                @endforeach  
                 </div>
             </div>
         </section>
@@ -133,7 +78,7 @@ Fash9ja: Our Team
                 <br>
 
                 <div class="blue-button">
-                    <a href="contact.html">Contact Us</a>
+                    <a href="{{route('contact')}}">Contact Us</a>
                 </div>
             </div>
         </section>

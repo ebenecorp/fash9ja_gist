@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Models\User;
 
 class WelcomeController extends Controller
 {
@@ -25,9 +26,9 @@ class WelcomeController extends Controller
         return view('about')->withCompany(Company::firstOrFail());
     }
     public function team(){
-        return view('team')->withCompany(Company::firstOrFail());
+        return view('team')->withCompany(Company::firstOrFail())->withUsers(User::limit(4)->get());
     }
     public function contact(){
-        return view('contact')->withCompany(Company::firstOrFail());
+        return view('contact')->withCompany(Company::firstOrFail())->withUsers(User::limit(4)->get());
     }
 }
