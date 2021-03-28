@@ -24,4 +24,10 @@ class WelcomeController extends Controller
     public function about(){
         return view('about')->withCompany(Company::firstOrFail());
     }
+    public function team(){
+        return view('team')->withCompany(Company::firstOrFail());
+    }
+    public function contact(){
+        return view('contact')->withCompany(Company::firstOrFail());
+    }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.web')
-    Fash9ja: Trending Gist
+
 @section('title')
-    
+Fash9ja: Trending Gist
 @endsection
 
 @section('content')

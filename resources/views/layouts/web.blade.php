@@ -42,9 +42,9 @@
 
                                 <li><a href="{{route('about')}}">About Us</a></li>
 
-                                <li><a href="team.html">Authors</a></li>
+                                <li><a href="{{route('team')}}">Authors</a></li>
 
-                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="{{route('contact')}}">Contact Us</a></li>
                             </ul>
                         </nav><!-- / #primary-nav -->
                     </div>
