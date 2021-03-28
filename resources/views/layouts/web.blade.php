@@ -36,11 +36,11 @@
                         </div></a>
                         <nav id="primary-nav" class="dropdown cf">
                             <ul class="dropdown menu">
-                                <li class='active'><a href="index.html">Home</a></li>
+                                <li class='active'><a href="/">Home</a></li>
 
-                                <li><a href="blog.html">Blog</a></li>
+                                <li><a href="{{route('blog')}}">Blog</a></li>
 
-                                <li><a href="about-us.html">About Us</a></li>
+                                <li><a href="{{route('about')}}">About Us</a></li>
 
                                 <li><a href="team.html">Authors</a></li>
 
@@ -89,7 +89,7 @@
                             <div class="col-md-6">
                                 <ul>
                                     <li><a href="team.html"><i class="fa fa-stop"></i>Authors</a></li>
-                                    <li><a href="blog.html"><i class="fa fa-stop"></i>Blog</a></li>
+                                    <li><a href="{{route('blog')}}"><i class="fa fa-stop"></i>Blog</a></li>
                                 </ul>
                             </div>
                         </div>

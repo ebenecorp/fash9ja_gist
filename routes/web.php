@@ -20,6 +20,8 @@ use App\Http\Controllers\WelcomeController;
 */
 
 Route::get('/', [WelcomeController::class, 'index'])->name('index');
+Route::get('/blog', [WelcomeController::class, 'blog'])->name('blog');
+Route::get('/about', [WelcomeController::class, 'about'])->name('about');
 
 
 
