@@ -2,8 +2,7 @@
 
 use Illuminate\Support\Str;
 
-$url = parse_url(getenv("postgres://raarfcibiselyl:5149d5b43dc57af4254c3b02b270b900e983fd6a9775c0cdb82ba1f14f01fe9d@ec2-52-7-115-250.compute-1.amazonaws.com:5432/d4m74g8rd2vi9s
-"));
+$url = parse_url(getenv("postgres://ipvaketxdohksn:4d431147c172150cc8a8ea08b977f3ae342f0232f4c60f645d9a389fb259e041@ec2-3-211-37-117.compute-1.amazonaws.com:5432/dc744513rkuajf"));
 
 $host = $url["host"];
 $username = $url["user"];
@@ -71,8 +70,8 @@ return [
             ]) : [],
         ],
 
-        'pgsql' => [
-           'driver'   => 'pgsql',
+        'pgsql' =>  array(
+        'driver'   => 'pgsql',
         'host'     => $host,
         'database' => $database,
         'username' => $username,
@@ -80,7 +79,7 @@ return [
         'charset'  => 'utf8',
         'prefix'   => '',
         'schema'   => 'public',
-        ],
+    ),
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',
