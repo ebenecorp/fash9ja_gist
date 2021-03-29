@@ -2,12 +2,9 @@
 
 use Illuminate\Support\Str;
 
-$url = parse_url(getenv("postgres://ipvaketxdohksn:4d431147c172150cc8a8ea08b977f3ae342f0232f4c60f645d9a389fb259e041@ec2-3-211-37-117.compute-1.amazonaws.com:5432/dc744513rkuajf"));
+$DATABASE_URL = parse_url("postgres://ipvaketxdohksn:4d431147c172150cc8a8ea08b977f3ae342f0232f4c60f645d9a389fb259e041@ec2-3-211-37-117.compute-1.amazonaws.com:5432/dc744513rkuajf");
 
-$host = $url["host"];
-$username = $url["user"];
-$password = $url["pass"];
-$database = substr($url["path"], 1);
+
 
 return [
 
@@ -70,16 +67,18 @@ return [
             ]) : [],
         ],
 
-        'pgsql' =>  array(
-        'driver'   => 'pgsql',
-        'host'     => $host,
-        'database' => $database,
-        'username' => $username,
-        'password' => $password,
-        'charset'  => 'utf8',
-        'prefix'   => '',
-        'schema'   => 'public',
-    ),
+        'pgsql' => [
+            'driver' => 'pgsql',
+            'host' => $DATABASE_URL["host"],
+            'port' => $DATABASE_URL["port"],
+            'database' => ltrim($DATABASE_URL["path"], "/"),
+            'username' => $DATABASE_URL["user"],
+            'password' => $DATABASE_URL["pass"],
+            'charset' => 'utf8',
+            'prefix' => '',
+            'schema' => 'public',
+            'sslmode' => 'require',
+        ],
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',
