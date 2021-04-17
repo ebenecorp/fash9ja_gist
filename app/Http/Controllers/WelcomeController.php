@@ -18,7 +18,7 @@ class WelcomeController extends Controller
     }
 
     public function blog(){
-        return view('blog')->withCompany(Company::firstOrFail())->withPosts(Post::all())
+        return view('blog')->withCompany(Company::firstOrFail())->withPosts(Post::paginate(4))
             ->withCategories(Category::all())->withTags(Tag::all());
     }
 
@@ -30,5 +30,9 @@ class WelcomeController extends Controller
     }
     public function contact(){
         return view('contact')->withCompany(Company::firstOrFail())->withUsers(User::limit(4)->get());
+    }
+
+    public function blogDetail($id){
+        return view('blogDetails')->withPost(Post::findorfail($id))->withCompany(Company::firstOrFail());
     }
 }

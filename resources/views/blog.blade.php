@@ -43,7 +43,7 @@ Fash9ja: Trending Gist
                                         <h4>{{$post->title}}</h4>
                                         {{-- <p>{{$post->description}} </p> --}}
                                         <div class="text-button">
-                                            <a href="blog-details.html">Read More</a>
+                                            <a href="{{ route('blogDetail', $post->id)}}">Read More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -88,5 +88,6 @@ Fash9ja: Trending Gist
                     </div>
                 </div>
             </div>
+            {{posts->links()}}
         </section>
 @endsection

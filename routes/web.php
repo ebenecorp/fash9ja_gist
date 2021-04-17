@@ -24,6 +24,7 @@ Route::get('/blog', [WelcomeController::class, 'blog'])->name('blog');
 Route::get('/about', [WelcomeController::class, 'about'])->name('about');
 Route::get('/team', [WelcomeController::class, 'team'])->name('team');
 Route::get('/contact', [WelcomeController::class, 'contact'])->name('contact');
+Route::get('/blog/{id}', [WelcomeController::class, 'blogDetail'])->name('blogDetail');
 
 
 
