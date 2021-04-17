@@ -14,7 +14,7 @@ class WelcomeController extends Controller
     //
     public function index(){
 
-        return view('welcome')->withCompany(Company::firstOrFail())->withPosts(Post::limit(3)->get());
+        return view('index')->withCompany(Company::firstOrFail())->withPosts(Post::limit(3)->get());
     }
 
     public function blog(){
