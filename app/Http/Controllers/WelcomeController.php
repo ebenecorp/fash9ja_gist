@@ -18,7 +18,7 @@ class WelcomeController extends Controller
     }
 
     public function blog(){
-        return view('blog')->withCompany(Company::firstOrFail())->withPosts(Post::paginate(4))
+        return view('blog')->withCompany(Company::firstOrFail())->withPosts(Post::simplaPaginate(4))
             ->withCategories(Category::all())->withTags(Tag::all());
     }
 

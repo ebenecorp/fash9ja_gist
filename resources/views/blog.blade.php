@@ -88,6 +88,6 @@ Fash9ja: Trending Gist
                     </div>
                 </div>
             </div>
-            {{posts->links()}}
+            {{$posts->links()}}
         </section>
 @endsection
