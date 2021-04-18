@@ -36,7 +36,7 @@
                         </div></a>
                         <nav id="primary-nav" class="dropdown cf">
                             <ul class="dropdown menu">
-                                <li class='active'><a href="/">Home</a></li>
+                                <li class='active'><a href="{{route('index')}}">Home</a></li>
 
                                 <li><a href="{{route('blog')}}">Blog</a></li>
 
@@ -81,14 +81,14 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <ul>
-                                    <li><a href="inde.html"><i class="fa fa-stop"></i>Home</a></li>
-                                    <li><a href="about.html"><i class="fa fa-stop"></i>About</a></li>
-                                    <li><a href="contact.html"><i class="fa fa-stop"></i>Contact Us</a></li>
+                                    <li><a href="{{route('index')}}"><i class="fa fa-stop"></i>Home</a></li>
+                                    <li><a href="{{route('about')}}"><i class="fa fa-stop"></i>About</a></li>
+                                    <li><a href="{{route('contact')}}"><i class="fa fa-stop"></i>Contact Us</a></li>
                                 </ul>
                             </div>
                             <div class="col-md-6">
                                 <ul>
-                                    <li><a href="team.html"><i class="fa fa-stop"></i>Authors</a></li>
+                                    <li><a href="{{route('team')}}"><i class="fa fa-stop"></i>Authors</a></li>
                                     <li><a href="{{route('blog')}}"><i class="fa fa-stop"></i>Blog</a></li>
                                 </ul>
                             </div>
