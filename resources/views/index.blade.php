@@ -99,7 +99,7 @@
                       <!-- Modal button -->
 
                       <div class="blue-button">
-                        <a href="contact.html">Talk to us</a>
+                        <a href="{{route('contact')}}">Talk to us</a>
                       </div>
                 </div>
             </div>
