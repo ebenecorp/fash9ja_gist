@@ -17,10 +17,17 @@
         <link rel="stylesheet" href="{{asset('css/hero-slider.css')}}">
         <link rel="stylesheet" href="{{asset('css/owl-carousel.css')}}">
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
+        <link rel="stylesheet" href="{{secure_asset('css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{secure_asset('css/bootstrap-theme.min.css')}}">
+        <link rel="stylesheet" href="{{secure_asset('css/fontAwesome.css')}}">
+        <link rel="stylesheet" href="{{secure_asset('css/hero-slider.css')}}">
+        <link rel="stylesheet" href="{{secure_asset('css/owl-carousel.css')}}">
+        <link rel="stylesheet" href="{{secure_asset('css/style.css')}}">
 
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
         <script src="{{asset("js/vendor/modernizr-2.8.3-respond-1.4.2.min.js")}}"></script>
+        <script src="{{secure_asset("js/vendor/modernizr-2.8.3-respond-1.4.2.min.js")}}"></script>
     </head>
 
 <body>
