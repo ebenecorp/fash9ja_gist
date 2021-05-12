@@ -18,6 +18,7 @@ class WelcomeController extends Controller
     }
 
     public function blog(){
+
         $search = $request()->query('search');
 
         if($search){
@@ -26,7 +27,7 @@ class WelcomeController extends Controller
         else{
            $posts =  Post::simplePaginate(4);
         }
-        return view('blog')->withCompany(Company::firstOrFail())->withPosts($posts)
+        return view('blog')->withCompany(Company::firstOrFail())->with('posts', $posts)
             ->withCategories(Category::all())->withTags(Tag::all());
     }
 
