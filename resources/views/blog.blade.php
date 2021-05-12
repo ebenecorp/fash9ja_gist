@@ -60,11 +60,11 @@ Fash9ja: Trending Gist
 
                         <div class="form-group">
                             <form action="{{route('blog')}}" method="get">
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="search" value="{{$request()->query('search')}}" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="search" value="" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
 
-                                <span class="input-group-addon"><a href="#"><i class="fa fa-search"></i></a></span>
-                            </div>
+                                    <span class="input-group-addon"><a href="#"><i class="fa fa-search"></i></a></span>
+                                </div>
                             </form>
                         </div>
 
