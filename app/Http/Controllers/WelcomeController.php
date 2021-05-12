@@ -19,7 +19,7 @@ class WelcomeController extends Controller
 
     public function blog(){
 
-        $search = $request()->query('search');
+        $search = request()->query('search');
 
         if($search){
             $posts = Post::where('title', 'LIKE', "%{$search}%" )->simplePaginate(4);
