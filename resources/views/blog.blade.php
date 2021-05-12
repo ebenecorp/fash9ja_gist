@@ -50,6 +50,7 @@ Fash9ja: Trending Gist
                             </div>
                             @endforeach
                             
+                            {{$posts->appends(['search'=> request()->query('search')])->links()}}
                         </div>
                     </div>
 
@@ -90,6 +91,6 @@ Fash9ja: Trending Gist
                     </div>
                 </div>
             </div>
-            {{$posts->links()}}
+            {{-- {{$posts->links()}} --}}
         </section>
 @endsection
