@@ -18,7 +18,15 @@ class WelcomeController extends Controller
     }
 
     public function blog(){
-        return view('blog')->withCompany(Company::firstOrFail())->withPosts(Post::simplePaginate(4))
+        $search = $request()->query('search');
+
+        if($search){
+            $posts = Post::where('title', 'LIKE', "%{$search}%" )->simplePaginate(4);
+        }
+        else{
+           $posts =  Post::simplePaginate(4);
+        }
+        return view('blog')->withCompany(Company::firstOrFail())->withPosts($posts)
             ->withCategories(Category::all())->withTags(Tag::all());
     }
 
