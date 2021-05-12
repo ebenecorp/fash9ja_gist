@@ -20,7 +20,7 @@
 
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
-        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+        <script src="{{asset("js/vendor/modernizr-2.8.3-respond-1.4.2.min.js")}}"></script>
     </head>
 
 <body>
@@ -32,7 +32,7 @@
                     <div class="col-md-12">
                         <button id="primary-nav-button" type="button">Menu</button>
                         <a href="index.html"><div class="logo">
-                            <img src="img/logo.png" alt="Venue Logo">
+                            <img src="{{asset('img/logo.png')}}" alt="Venue Logo">
                         </div></a>
                         <nav id="primary-nav" class="dropdown cf">
                             <ul class="dropdown menu">
@@ -61,7 +61,7 @@
                 <div class="col-md-5">
                     <div class="about-veno">
                         <div class="logo">
-                            <img src="img/footer_logo.png" alt="Venue Logo">
+                            <img src="{{asset('img/footer_logo.png')}}" alt="Venue Logo">
                         </div>
                         <p>{{$company->description}}.</p>
                         <ul class="social-icons">
