@@ -24,12 +24,12 @@ Fash9ja: Trending Gist
                 <div class="row">
                     <div class="col-lg-9 col-md-8 col-xs-12">
                         <div class="row">
-                            @foreach ($posts as $post)                          
+                            @forelse ($posts as $post)                          
                             <div class="col-sm-6 col-xs-12">
                                 <div class="featured-item">
                                     <div class="thumb">
                                         <div class="thumb-img">
-                                            <img src="{{asset('storage/'.$post->image)}}"  alt="">
+                                            <img src='{{asset("storage/{$post->image}")}}'  alt="">
                                         </div>
 
                                         <div class="overlay-content">
@@ -48,10 +48,15 @@ Fash9ja: Trending Gist
                                     </div>
                                 </div>
                             </div>
-                            @endforeach
+                            @empty
+                                <p class="textcenter">
+                                    No results found for query <strong>{{request()->query('search')}}</strong>
+                                </p>
+
+                            @endforelse
                             
-                            {{$posts->appends(['search'=> request()->query('search')])->links()}}
                         </div>
+                        {{$posts->appends(['search'=> request()->query('search')])->links()}}
                     </div>
 
                     <div class="col-lg-3 col-md-4 col-xs-12">
