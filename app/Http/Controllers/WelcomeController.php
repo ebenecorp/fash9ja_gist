@@ -44,4 +44,36 @@ class WelcomeController extends Controller
     public function blogDetail($id){
         return view('blogDetails')->withPost(Post::findorfail($id))->withCompany(Company::firstOrFail());
     }
+
+     public function category($id){
+
+        $search = request()->query('search');
+
+        if($search){
+            $posts = Category::findorFail($id)->posts()->where('title', 'LIKE', "%{$search}%" )->simplePaginate(4);
+            // $posts = Post::where('title', 'LIKE', "%{$search}%" )->simplePaginate(4);
+        }
+        else{
+            $posts = Category::findorFail($id)->posts()->simplePaginate(4);
+        //    $posts =  Post::simplePaginate(4);
+        }
+        return view('blog')->withCompany(Company::firstOrFail())->with('posts', $posts)
+            ->withCategories(Category::all())->withTags(Tag::all());
+    }
+
+     public function tag($id){
+
+        $search = request()->query('search');
+
+        if($search){
+            $posts = Tag::findorFail($id)->posts()->where('title', 'LIKE', "%{$search}%" )->simplePaginate(4);
+            // $posts = Post::where('title', 'LIKE', "%{$search}%" )->simplePaginate(4);
+        }
+        else{
+            $posts = Tag::findorFail($id)->posts()->simplePaginate(4);
+        //    $posts =  Post::simplePaginate(4);
+        }
+        return view('blog')->withCompany(Company::firstOrFail())->with('posts', $posts)
+            ->withCategories(Category::all())->withTags(Tag::all());
+    }
 }

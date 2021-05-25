@@ -25,6 +25,8 @@ Route::get('/about', [WelcomeController::class, 'about'])->name('about');
 Route::get('/team', [WelcomeController::class, 'team'])->name('team');
 Route::get('/contact', [WelcomeController::class, 'contact'])->name('contact');
 Route::get('/blog/{id}', [WelcomeController::class, 'blogDetail'])->name('blogDetail');
+Route::get('/category/{id}', [WelcomeController::class, 'category'])->name('categoryPost');
+Route::get('/tag/{id}', [WelcomeController::class, 'tag'])->name('tagPost');
 
 
 

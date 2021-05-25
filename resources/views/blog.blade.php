@@ -80,7 +80,7 @@ Fash9ja: Trending Gist
                             <h4>Categories</h4>
                         </div>
                         @foreach ($categories as $category)
-                        <p><a href="#">{{$category->name}}</a></p>  
+                        <p><a href="{{ route('categoryPost', $category->id)}}">{{$category->name}}</a></p>  
                         @endforeach
 
                         <br>
@@ -90,7 +90,7 @@ Fash9ja: Trending Gist
                             <h4>Tags</h4>
                         </div>
                         @foreach ($tags as $tag)
-                        <p><a href="#">{{$tag->name}}</a></p>  
+                        <p><a href="{{ route('tagPost', $tag->id)}}">{{$tag->name}}</a></p>  
                         @endforeach
                        
                     </div>
